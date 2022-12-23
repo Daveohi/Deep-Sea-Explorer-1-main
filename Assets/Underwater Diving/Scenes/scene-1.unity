@@ -9812,7 +9812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 928193749}
-  playerSpeed: 0
+  playerSpeed: 1
 --- !u!1001 &9152610793258657030
 PrefabInstance:
   m_ObjectHideFlags: 0
