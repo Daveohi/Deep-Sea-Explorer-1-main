@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour{
 
 	public float moveSpeed;
-	//public float jump;
 	public bool rushing = false;
 
-	
+	//private MobileInput mobileinput;
 
 	private float speedMod = 0;
 
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour{
 
 	//move character with joystick
 
-	public FloatingJoystick floatingJoystick;
+	//public MovementJoystick movementJoystick;
 	private float inputX;
 	private float inputY;
 
@@ -47,8 +46,8 @@ public class PlayerController : MonoBehaviour{
 	}
 
 	void controllerManager (){
-		inputX = floatingJoystick.inputHorizontal();
-		inputY = floatingJoystick.inputVertical();
+		//inputX = movementJoystick.inputHorizontal();
+		//inputY = movementJoystick.inputVertical();
 
   #region Standalone Inputs
 		if (Input.GetAxis ("Horizontal") > 0f) {
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour{
 			myRigidBody.velocity = new Vector3 (myRigidBody.velocity.x, -moveSpeed, 0f);
 		}
 
-		if(Input.GetButtonDown("Jump") && !rushing ){
+		if(Input.GetMouseButtonDown(0) && !rushing ){
 			rushing = true;
 			speedMod = 2;
 			Instantiate (bubbles, gameObject.transform.position, gameObject.transform.rotation);
@@ -73,7 +72,12 @@ public class PlayerController : MonoBehaviour{
 
 //would work for mobile inputs
       #region Mobile Inputs
-			if (inputX > 0f) {
+
+		
+			
+
+
+		if (inputX > 0f) {
 			transform.localScale = new Vector3(1f,1f,1f);
 			movePlayer ();
 		} else if (inputX < 0f) {			
@@ -84,7 +88,14 @@ public class PlayerController : MonoBehaviour{
 		} else if (inputY < 0f) {
 			myRigidBody.velocity = new Vector3 (myRigidBody.velocity.x, -moveSpeed, 0f);
 		}
-		
+		/*if (Input.GetButtonDown("Jump") && !rushing)
+		{
+			rushing = true;
+			speedMod = 2;
+			Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
+			movePlayer();
+		}*/
+
 
 		#endregion
 
@@ -111,17 +122,15 @@ public class PlayerController : MonoBehaviour{
 		}	
 	}
 
-	public void jump()
+	/*public void jump()
     {
-		if (Input.GetButtonDown("Jump") && !rushing)
-		{
+		if(Input.GetMouseButtonDown(0) && !rushing ){
 			rushing = true;
 			speedMod = 2;
-			Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
-			gameObject.GetComponent<Animator>().Play("Rushing");
-			movePlayer();
+			Instantiate (bubbles, gameObject.transform.position, gameObject.transform.rotation);
+			movePlayer ();
 		}
-	}
+	}*/
 
 	public void hurt(){
 		if(!rushing){

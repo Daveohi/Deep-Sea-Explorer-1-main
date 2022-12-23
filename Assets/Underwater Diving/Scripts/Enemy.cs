@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
 
 	private PlayerController thePlayer;
 	public GameObject death;
+	//public AudioSource audioSource;
 
 	public float speed = 0.3f;
 
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour {
 
 		if(other.tag == "Player" && thePlayer.rushing){
 			Instantiate (death, gameObject.transform.position, gameObject.transform.rotation);
+			//audioSource.Play();
 			Destroy (gameObject);
 		}
 
